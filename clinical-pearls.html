@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Pearls – Rapid Fire STEP Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0F1419;
+            --bg-secondary: #1A1F2E;
+            --bg-card: #242B3D;
+            --accent-primary: #00E5FF;
+            --accent-secondary: #FF3D71;
+            --accent-success: #00D9A0;
+            --accent-warning: #FFB800;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8B92A7;
+            --text-dim: #5A6375;
+            --border: #2D3548;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .stat-value.streak {
+            color: var(--accent-warning);
+        }
+
+        .stat-value.score {
+            color: var(--accent-success);
+        }
+
+        /* Main Container */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Progress Bar */
+        .session-progress {
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s 0.1s ease-out backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-container {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            animation: cardEnter 0.5s 0.2s ease-out backwards;
+        }
+
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--accent-primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+        }
+
+        .difficulty {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .difficulty-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .difficulty-dot.active {
+            background: var(--accent-warning);
+        }
+
+        .question {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .question-text strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .clinical-context {
+            background: rgba(0, 229, 255, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+
+        .option:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 229, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+            flex-shrink: 0;
+        }
+
+        .option.selected {
+            border-color: var(--accent-primary);
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .option.correct {
+            border-color: var(--accent-success);
+            background: rgba(0, 217, 160, 0.1);
+        }
+
+        .option.correct .option-letter {
+            background: var(--accent-success);
+            color: var(--bg-primary);
+        }
+
+        .option.incorrect {
+            border-color: var(--accent-secondary);
+            background: rgba(255, 61, 113, 0.1);
+            opacity: 0.6;
+        }
+
+        .option.incorrect .option-letter {
+            background: var(--accent-secondary);
+            color: var(--bg-primary);
+        }
+
+        .option:disabled {
+            cursor: not-allowed;
+        }
+
+        /* Explanation */
+        .explanation {
+            background: rgba(0, 217, 160, 0.05);
+            border: 1px solid var(--accent-success);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .explanation-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-success);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .explanation-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .pearl-highlight {
+            background: rgba(255, 184, 0, 0.15);
+            border-left: 3px solid var(--accent-warning);
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .pearl-highlight::before {
+            content: '💎 PEARL: ';
+            color: var(--accent-warning);
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), #00B8D4);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Timer */
+        .timer {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .timer.warning {
+            color: var(--accent-warning);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Feedback */
+        .feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 5rem;
+            animation: feedbackPop 0.5s ease-out;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes feedbackPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Email Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            padding: 3rem;
+            position: relative;
+            animation: modalSlideUp 0.4s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 229, 255, 0.2);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 2rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(0, 229, 255, 0.5);
+            }
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-features {
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-top: 0.1rem;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .email-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-primary), #00B8D4);
+            border: none;
+            border-radius: 12px;
+            color: var(--bg-primary);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .privacy-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: successPop 0.5s ease-out;
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-success);
+            margin-bottom: 1rem;
+        }
+
+        .success-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Lock Overlay */
+        .lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            border-radius: 20px;
+        }
+
+        .lock-overlay.show {
+            display: flex;
+        }
+
+        .lock-message {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .lock-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .unlock-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), #00B8D4);
+            border: none;
+            border-radius: 12px;
+            color: var(--bg-primary);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .unlock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats-bar {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .timer {
+                position: static;
+                margin-bottom: 1rem;
+            }
+
+            .modal {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">💎</div>
+            <div class="logo-text">
+                <h1>Clinical Pearls</h1>
+                <p>Rapid Fire STEP 1 Prep</p>
+            </div>
+        </div>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-label">Today</div>
+                <div class="stat-value" id="todayCount">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Streak</div>
+                <div class="stat-value streak" id="streak">0🔥</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Score</div>
+                <div class="stat-value score" id="score">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Progress -->
+        <div class="session-progress">
+            <div class="progress-header">
+                <span>Session Progress</span>
+                <span id="progressText">0 / 20 questions</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Card -->
+        <div class="card">
+            <div class="timer" id="timer">0:00</div>
+            
+            <div class="card-header">
+                <span class="category-tag" id="category">CARDIOLOGY</span>
+                <div class="difficulty" id="difficulty">
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot"></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="clinical-context" id="clinicalContext">
+                    A 67-year-old man with a history of hypertension presents to the ED with sudden-onset chest pain radiating to the back. BP is 180/110 in right arm and 120/80 in left arm. CXR shows widened mediastinum.
+                </div>
+
+                <div class="question-text" id="questionText">
+                    What is the most likely diagnosis?
+                </div>
+
+                <div class="options" id="options">
+                    <!-- Options will be inserted here -->
+                </div>
+
+                <div class="explanation" id="explanation">
+                    <div class="explanation-header">
+                        ✓ EXPLANATION
+                    </div>
+                    <div class="explanation-text" id="explanationText">
+                        <!-- Explanation will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="skipQuestion()">Skip</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <!-- Lock Overlay (shows after 5 questions) -->
+            <div class="lock-overlay" id="lockOverlay">
+                <div class="lock-message">
+                    <div class="lock-icon">🔒</div>
+                    <div class="lock-text">
+                        You've completed 5 questions!<br>
+                        Unlock 15 more + get early access to 500+ cases.
+                    </div>
+                    <button class="unlock-btn" onclick="showEmailModal()">Get Free Access</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeEmailModal()">×</button>
+            
+            <div id="emailFormContent">
+                <div class="modal-icon">💎</div>
+                <h2 class="modal-title">Get Early Access</h2>
+                <p class="modal-subtitle">
+                    Join the waitlist for Clinical Pearls and get notified when we launch with 500+ high-yield STEP 1 cases.
+                </p>
+
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>500+ Clinical Cases</strong> across all major specialties with detailed explanations
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>Spaced Repetition Algorithm</strong> optimized for STEP 1 retention
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>High-Yield Pearls</strong> distilled from First Aid, Pathoma, and UWorld
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>100% Free Forever</strong> – built by med students, for med students
+                        </div>
+                    </div>
+                </div>
+
+                <form class="email-form" onsubmit="submitEmail(event)">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        id="emailInput"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Join Waitlist & Continue
+                    </button>
+                </form>
+
+                <p class="privacy-note">
+                    We'll only email you when Clinical Pearls launches. No spam, ever.<br>
+                    Unsubscribe anytime.
+                </p>
+            </div>
+
+            <div id="successContent" style="display: none;">
+                <div class="success-message">
+                    <div class="success-icon">🎉</div>
+                    <div class="success-title">You're on the list!</div>
+                    <div class="success-text">
+                        Check your email for confirmation. We'll notify you the moment Clinical Pearls launches with 500+ cases.<br><br>
+                        <strong>Now get back to studying – you've got 15 more questions to crush! 💪</strong>
+                    </div>
+                    <button class="submit-btn" onclick="closeEmailModalAndContinue()">
+                        Continue Practice
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample question bank (in production, this would be much larger and from a database)
+        const questionBank = [
+            {
+                category: "CARDIOLOGY",
+                difficulty: 2,
+                context: "A 67-year-old man with a history of hypertension presents to the ED with sudden-onset chest pain radiating to the back. BP is 180/110 in right arm and 120/80 in left arm. CXR shows widened mediastinum.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Acute MI",
+                    "Aortic dissection",
+                    "Pulmonary embolism",
+                    "Pneumothorax"
+                ],
+                correct: 1,
+                explanation: "Classic presentation of aortic dissection: sudden tearing chest pain to back, BP differential between arms (>20 mmHg suggests involvement of subclavian), and widened mediastinum on CXR. Type A dissections (ascending aorta) are surgical emergencies.",
+                pearl: "BP differential >20 mmHg between arms = think aortic dissection until proven otherwise"
+            },
+            {
+                category: "RENAL",
+                difficulty: 3,
+                context: "A 45-year-old woman presents with fatigue, polyuria, and polydipsia. Labs show: Na 145, K 2.8, Cl 110, HCO3 18, glucose 90. ABG: pH 7.30, pCO2 32. Urine pH is 6.0.",
+                question: "What is the acid-base disorder?",
+                options: [
+                    "Type 1 (distal) RTA",
+                    "Type 2 (proximal) RTA",
+                    "Type 4 RTA",
+                    "Diabetic ketoacidosis"
+                ],
+                correct: 0,
+                explanation: "Type 1 RTA: inability to acidify urine (pH >5.5) despite systemic acidosis. Leads to hypokalemia, normal anion gap metabolic acidosis. Associated with kidney stones due to hypercalciuria and alkaline urine.",
+                pearl: "Can't pee acid (urine pH >5.5) + metabolic acidosis = Type 1 RTA. Think kidney stones!"
+            },
+            {
+                category: "INFECTIOUS DISEASE",
+                difficulty: 2,
+                context: "A 28-year-old previously healthy woman presents with fever, headache, and photophobia. She recently returned from a camping trip in New England. Exam shows erythema migrans rash on thigh.",
+                question: "What is the causative organism?",
+                options: [
+                    "Rickettsia rickettsii",
+                    "Borrelia burgdorferi",
+                    "Ehrlichia chaffeensis",
+                    "Anaplasma phagocytophilum"
+                ],
+                correct: 1,
+                explanation: "Lyme disease caused by Borrelia burgdorferi, transmitted by Ixodes tick. Erythema migrans (bull's-eye rash) is pathognomonic and appears in 70-80% of cases. Early disseminated disease can cause meningitis, CN VII palsy, and AV block.",
+                pearl: "Lyme can cause bilateral facial nerve palsy - one of the few causes! Also watch for heart block."
+            },
+            {
+                category: "ENDOCRINE",
+                difficulty: 2,
+                context: "A 35-year-old woman complains of heat intolerance, palpitations, and weight loss despite increased appetite. Exam shows exophthalmos, pretibial myxedema, and a smooth, diffusely enlarged thyroid. TSH is undetectable, free T4 is elevated.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Toxic adenoma",
+                    "Graves' disease",
+                    "Subacute thyroiditis",
+                    "Hashimoto's thyroiditis"
+                ],
+                correct: 1,
+                explanation: "Graves' disease: autoimmune hyperthyroidism with TSH receptor antibodies. Classic triad: hyperthyroidism, ophthalmopathy (exophthalmos), and pretibial myxedema. Diffusely enlarged thyroid with increased uptake on radioiodine scan.",
+                pearl: "Pretibial myxedema is specific to Graves' - don't let the name fool you, it's in HYPERthyroidism!"
+            },
+            {
+                category: "GASTROENTEROLOGY",
+                difficulty: 3,
+                context: "A 50-year-old man with chronic alcohol use presents with jaundice and abdominal distension. Exam shows spider angiomas, palmar erythema, and shifting dullness. Paracentesis shows SAAG >1.1 g/dL.",
+                question: "What does the SAAG indicate?",
+                options: [
+                    "Infectious peritonitis",
+                    "Portal hypertension",
+                    "Peritoneal carcinomatosis",
+                    "Pancreatitis"
+                ],
+                correct: 1,
+                explanation: "Serum-Ascites Albumin Gradient (SAAG) >1.1 g/dL indicates portal hypertension (97% sensitivity). Causes include cirrhosis, heart failure, Budd-Chiari. SAAG <1.1 suggests non-portal hypertensive causes like infection, malignancy, or pancreatitis.",
+                pearl: "SAAG >1.1 = portal HTN. Think of it as 'the gradient across the portal vein.' Most commonly cirrhosis."
+            },
+            {
+                category: "NEUROLOGY",
+                difficulty: 2,
+                context: "A 72-year-old woman presents with sudden-onset right-sided weakness and aphasia. CT head is negative for hemorrhage. Symptoms started 2 hours ago. BP is 185/100.",
+                question: "What is the next best step?",
+                options: [
+                    "Lower BP to <140/90 immediately",
+                    "Administer tPA",
+                    "Order MRI brain",
+                    "Start aspirin and statin"
+                ],
+                correct: 1,
+                explanation: "Acute ischemic stroke within 4.5-hour window: tPA is indicated if no contraindications. CT negative for hemorrhage is sufficient to proceed - don't wait for MRI. BP should NOT be lowered unless >185/110 (tPA threshold) to maintain cerebral perfusion.",
+                pearl: "Time is brain! tPA window is 4.5 hours. Don't aggressively lower BP in acute stroke unless giving tPA."
+            },
+            {
+                category: "HEMATOLOGY",
+                difficulty: 3,
+                context: "A 45-year-old woman presents with easy bruising and petechiae. Labs: Platelets 15,000, normal PT/PTT, peripheral smear shows schistocytes and decreased platelets. LDH elevated, haptoglobin low, indirect bilirubin elevated.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "ITP",
+                    "TTP",
+                    "HUS",
+                    "DIC"
+                ],
+                correct: 1,
+                explanation: "TTP (Thrombotic Thrombocytopenic Purpura): pentad of thrombocytopenia, microangiopathic hemolytic anemia (schistocytes, elevated LDH, low haptoglobin), neurologic symptoms, renal dysfunction, fever. Caused by ADAMTS13 deficiency. Medical emergency requiring plasma exchange.",
+                pearl: "TTP pentad: thrombocytopenia, hemolytic anemia (schistocytes!), neuro, renal, fever. Don't wait - plasmapheresis now!"
+            },
+            {
+                category: "PULMONOLOGY",
+                difficulty: 2,
+                context: "A 28-year-old man presents with sudden-onset dyspnea and left-sided chest pain. He is tall and thin. Exam shows decreased breath sounds on the left. CXR shows visceral pleural line separated from chest wall.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Pneumonia",
+                    "Spontaneous pneumothorax",
+                    "Pleural effusion",
+                    "Pulmonary embolism"
+                ],
+                correct: 1,
+                explanation: "Primary spontaneous pneumothorax: occurs in tall, thin young men (Marfanoid habitus). Caused by rupture of apical blebs. CXR shows visceral pleural line. Treatment depends on size: small (<3cm) can observe, large requires chest tube.",
+                pearl: "Tall thin young man + sudden chest pain/dyspnea = spontaneous PTX until proven otherwise"
+            },
+            {
+                category: "RHEUMATOLOGY",
+                difficulty: 2,
+                context: "A 35-year-old woman presents with bilateral hand pain and morning stiffness lasting >1 hour. Exam shows swelling of MCP and PIP joints bilaterally. Labs show positive RF and anti-CCP antibodies.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Osteoarthritis",
+                    "Rheumatoid arthritis",
+                    "Psoriatic arthritis",
+                    "Gout"
+                ],
+                correct: 1,
+                explanation: "Rheumatoid arthritis: symmetric polyarthritis affecting small joints (MCP, PIP), morning stiffness >1 hour. Anti-CCP antibodies are highly specific (>95%). RF is less specific. Can cause joint deformities (swan neck, boutonniere) and extra-articular manifestations.",
+                pearl: "Anti-CCP > RF for specificity in RA. Morning stiffness >1 hour = inflammatory (vs OA which improves with rest)"
+            },
+            {
+                category: "PSYCHIATRY",
+                difficulty: 2,
+                context: "A 25-year-old woman presents with depressed mood, hypersomnia, increased appetite, and sensitivity to rejection. Symptoms have persisted for 3 weeks and are interfering with work. She has had similar episodes in the past.",
+                question: "What is the first-line treatment?",
+                options: [
+                    "Lithium",
+                    "SSRI",
+                    "Benzodiazepine",
+                    "Antipsychotic"
+                ],
+                correct: 1,
+                explanation: "Major depressive disorder with atypical features (hypersomnia, hyperphagia, rejection sensitivity). First-line: SSRIs or SNRIs. Atypical features historically responded better to MAOIs, but SSRIs are safer and still effective. Rule out bipolar before starting antidepressants.",
+                pearl: "Atypical depression = reverse vegetative symptoms (sleep more, eat more). Think SSRI first-line."
+            },
+            {
+                category: "NEPHROLOGY",
+                difficulty: 3,
+                context: "A 60-year-old man with diabetes presents with frothy urine. Labs show: Cr 1.2, albumin 2.5, urine protein 4.5 g/day. Renal biopsy shows nodular glomerulosclerosis with Kimmelstiel-Wilson nodules.",
+                question: "What medication class slows progression?",
+                options: [
+                    "Calcium channel blockers",
+                    "ACE inhibitors",
+                    "Beta blockers",
+                    "Diuretics"
+                ],
+                correct: 1,
+                explanation: "Diabetic nephropathy: progressive kidney disease in diabetes. Kimmelstiel-Wilson nodules are pathognomonic on biopsy. ACE inhibitors (or ARBs) slow progression by reducing intraglomerular pressure and proteinuria. Goal BP <130/80 in diabetic CKD.",
+                pearl: "ACEi/ARBs are renoprotective in diabetic nephropathy - use even if BP is normal! Monitor for hyperkalemia."
+            },
+            {
+                category: "DERMATOLOGY",
+                difficulty: 2,
+                context: "A 45-year-old woman presents with pruritic, polygonal, purple, flat-topped papules on wrists and ankles. Oral exam shows white, lacy lesions on buccal mucosa.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Psoriasis",
+                    "Lichen planus",
+                    "Seborrheic dermatitis",
+                    "Pityriasis rosea"
+                ],
+                correct: 1,
+                explanation: "Lichen planus: 6 P's - Pruritic, Purple, Polygonal, Planar (flat-topped), Papules, Plaques. Oral Wickham striae (white lacy pattern) are characteristic. Can affect skin, oral mucosa, genitals, nails. Associated with HCV.",
+                pearl: "6 P's of lichen planus! Wickham striae in mouth = pathognomonic. Check for Hep C."
+            },
+            {
+                category: "OBSTETRICS",
+                difficulty: 2,
+                context: "A 32-year-old G2P1 woman at 34 weeks presents with severe headache and epigastric pain. BP is 165/105. Labs show platelets 95,000, AST 250, ALT 280, LDH 600. Urine protein 3+.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Acute fatty liver of pregnancy",
+                    "HELLP syndrome",
+                    "Preeclampsia without severe features",
+                    "Cholestasis of pregnancy"
+                ],
+                correct: 1,
+                explanation: "HELLP syndrome: Hemolysis, Elevated Liver enzymes, Low Platelets. Severe form of preeclampsia. Presents with RUQ/epigastric pain, headache, HTN. Can progress to DIC, placental abruption, hepatic rupture. Treatment: delivery is definitive, give magnesium for seizure prophylaxis.",
+                pearl: "HELLP is preeclampsia on steroids! RUQ pain + HTN + thrombocytopenia + hemolysis = deliver the baby."
+            },
+            {
+                category: "ORTHOPEDICS",
+                difficulty: 2,
+                context: "A 25-year-old man presents after twisting his knee during basketball. He felt a 'pop' and now has knee swelling and instability. Physical exam shows positive Lachman test and anterior drawer sign.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "ACL tear",
+                    "MCL tear",
+                    "Meniscal tear",
+                    "PCL tear"
+                ],
+                correct: 0,
+                explanation: "ACL tear: common sports injury with twisting mechanism. Patient often reports hearing/feeling a 'pop'. Lachman test (knee at 30° flexion) is most sensitive. Anterior drawer also positive. MRI confirms diagnosis. Surgical reconstruction often needed in young, active patients.",
+                pearl: "Lachman > anterior drawer for ACL sensitivity. 'Pop' during twisting injury = ACL until proven otherwise."
+            },
+            {
+                category: "ONCOLOGY",
+                difficulty: 3,
+                context: "A 55-year-old man with a history of smoking presents with cough and hyponatremia (Na 118). CT chest shows a central lung mass. Labs show urine osmolality 600, serum osmolality 250.",
+                question: "What is the most likely cell type?",
+                options: [
+                    "Adenocarcinoma",
+                    "Small cell carcinoma",
+                    "Squamous cell carcinoma",
+                    "Large cell carcinoma"
+                ],
+                correct: 1,
+                explanation: "Small cell lung cancer with SIADH. Small cell is strongly associated with paraneoplastic syndromes: SIADH (ADH production), Cushing's (ACTH), Lambert-Eaton syndrome. Central location, strong smoking association. Chemotherapy-sensitive but poor prognosis.",
+                pearl: "Small cell = central, smokers, paraneoplastic syndromes (SIADH!). Limited stage = chemo + radiation."
+            },
+            {
+                category: "IMMUNOLOGY",
+                difficulty: 3,
+                context: "A 3-year-old boy presents with recurrent sinopulmonary infections. Labs show low IgG, IgA, and IgM but normal lymphocyte count. Flow cytometry shows absent B cells.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "SCID",
+                    "X-linked agammaglobulinemia",
+                    "Common variable immunodeficiency",
+                    "Selective IgA deficiency"
+                ],
+                correct: 1,
+                explanation: "X-linked agammaglobulinemia (Bruton's): mutation in BTK gene affecting B cell development. Absent/very low B cells, low all immunoglobulins. Recurrent infections after 6 months (when maternal IgG wanes). Treatment: IgG replacement therapy.",
+                pearl: "XLA: Boy + absent B cells + low all Ig's after 6 months = Bruton's. Give IVIG for life."
+            },
+            {
+                category: "UROLOGY",
+                difficulty: 2,
+                context: "A 68-year-old man presents with hematuria and flank pain. CT shows a renal mass with enhancement. CBC shows elevated hemoglobin. EPO level is elevated.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Renal cell carcinoma",
+                    "Transitional cell carcinoma",
+                    "Wilms tumor",
+                    "Oncocytoma"
+                ],
+                correct: 0,
+                explanation: "Renal cell carcinoma: classic triad is hematuria, flank pain, palpable mass (only 10% have all three). Can cause paraneoplastic syndromes: polycythemia (EPO), hypercalcemia (PTHrP), hypertension (renin). Treatment: nephrectomy for localized disease.",
+                pearl: "RCC paraneoplastic syndromes: think EPO (polycythemia), PTHrP (hypercalcemia), renin (HTN). Classic triad rare!"
+            },
+            {
+                category: "OPHTHALMOLOGY",
+                difficulty: 2,
+                context: "A 65-year-old diabetic man presents with painless vision loss. Fundoscopic exam shows neovascularization, microaneurysms, hemorrhages, and hard exudates in a macular pattern.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Non-proliferative diabetic retinopathy",
+                    "Proliferative diabetic retinopathy",
+                    "Hypertensive retinopathy",
+                    "Central retinal artery occlusion"
+                ],
+                correct: 1,
+                explanation: "Proliferative diabetic retinopathy: neovascularization is the defining feature (vs non-proliferative which has microaneurysms, hemorrhages, exudates only). Neovascularization can lead to vitreous hemorrhage and retinal detachment. Treatment: pan-retinal photocoagulation, anti-VEGF injections.",
+                pearl: "Neovascularization = proliferative DR. This is vision-threatening - needs laser ASAP to prevent hemorrhage/detachment."
+            },
+            {
+                category: "TOXICOLOGY",
+                difficulty: 2,
+                context: "A 22-year-old woman is brought to ED after intentional overdose. She is confused with rapid respirations. ABG shows pH 7.50, pCO2 20, HCO3 24. Labs show anion gap of 20. Urine ferric chloride test is positive.",
+                question: "What is the most likely ingestion?",
+                options: [
+                    "Acetaminophen",
+                    "Aspirin",
+                    "Tricyclic antidepressants",
+                    "Benzodiazepines"
+                ],
+                correct: 1,
+                explanation: "Salicylate (aspirin) toxicity: causes mixed respiratory alkalosis (direct CNS stimulation) and metabolic acidosis (uncoupling oxidative phosphorylation). Anion gap metabolic acidosis. Ferric chloride test positive. Treatment: alkalinize urine with sodium bicarbonate, hemodialysis for severe cases.",
+                pearl: "Aspirin OD = respiratory alkalosis THEN metabolic acidosis. Alkalinize urine to trap salicylate. HD if severe."
+            },
+            {
+                category: "PEDIATRICS",
+                difficulty: 2,
+                context: "A 4-year-old boy presents with bilateral leg pain and refusal to walk. He had an upper respiratory infection 2 weeks ago. Exam shows symmetric weakness and absent reflexes in lower extremities. LP shows elevated protein with normal cell count.",
+                question: "What is the most likely diagnosis?",
+                options: [
+                    "Muscular dystrophy",
+                    "Guillain-Barré syndrome",
+                    "Transverse myelitis",
+                    "Botulism"
+                ],
+                correct: 1,
+                explanation: "Guillain-Barré syndrome: acute inflammatory demyelinating polyneuropathy. Ascending symmetric weakness, areflexia, follows viral infection. LP shows albuminocytologic dissociation (high protein, normal WBC). Can progress to respiratory failure. Treatment: IVIG or plasmapheresis.",
+                pearl: "GBS: ascending paralysis + areflexia + high CSF protein/normal cells after infection. Monitor respiratory status!"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let sessionQuestions = [];
+        let correctCount = 0;
+        let totalAnswered = 0;
+        let streak = 0;
+        let todayCount = 0;
+        let startTime;
+        let timerInterval;
+        let selectedAnswer = null;
+        let hasUnlocked = false;
+
+        // Check if user has unlocked (stored in localStorage)
+        function checkUnlockStatus() {
+            const unlocked = localStorage.getItem('clinicalPearlsUnlocked');
+            if (unlocked === 'true') {
+                hasUnlocked = true;
+            }
+        }
+
+        // Initialize session
+        function initSession() {
+            checkUnlockStatus();
+            // Shuffle and select 20 questions
+            sessionQuestions = [...questionBank].sort(() => Math.random() - 0.5).slice(0, 20);
+            currentQuestionIndex = 0;
+            correctCount = 0;
+            totalAnswered = 0;
+            loadQuestion();
+        }
+
+        // Load question
+        function loadQuestion() {
+            const q = sessionQuestions[currentQuestionIndex];
+            selectedAnswer = null;
+            
+            // Reset timer
+            clearInterval(timerInterval);
+            startTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Update UI
+            document.getElementById('category').textContent = q.category;
+            document.getElementById('clinicalContext').textContent = q.context;
+            document.getElementById('questionText').textContent = q.question;
+            
+            // Set difficulty
+            const difficultyDots = document.querySelectorAll('.difficulty-dot');
+            difficultyDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i < q.difficulty);
+            });
+            
+            // Create options
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option';
+                optionEl.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+                    <div>${option}</div>
+                `;
+                optionEl.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            // Hide explanation
+            document.getElementById('explanation').classList.remove('show');
+            document.getElementById('nextBtn').disabled = true;
+            
+            // Update progress
+            updateProgress();
+        }
+
+        // Select answer
+        function selectAnswer(index) {
+            if (selectedAnswer !== null) return; // Already answered
+            
+            selectedAnswer = index;
+            const q = sessionQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // Mark correct/incorrect
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === selectedAnswer) {
+                    opt.classList.add('incorrect');
+                } else {
+                    opt.style.opacity = '0.5';
+                }
+            });
+            
+            // Show explanation
+            const explanationEl = document.getElementById('explanation');
+            const explanationTextEl = document.getElementById('explanationText');
+            explanationTextEl.innerHTML = `
+                ${q.explanation}
+                <div class="pearl-highlight">${q.pearl}</div>
+            `;
+            explanationEl.classList.add('show');
+            
+            // Update stats
+            totalAnswered++;
+            if (selectedAnswer === q.correct) {
+                correctCount++;
+                streak++;
+                showFeedback('✓');
+            } else {
+                streak = 0;
+                showFeedback('✗');
+            }
+            
+            updateStats();
+            document.getElementById('nextBtn').disabled = false;
+            clearInterval(timerInterval);
+        }
+
+        // Skip question
+        function skipQuestion() {
+            totalAnswered++;
+            streak = 0;
+            updateStats();
+            nextQuestion();
+        }
+
+        // Next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            // Show lock overlay after 5 questions if not unlocked
+            if (currentQuestionIndex === 5 && !hasUnlocked) {
+                document.getElementById('lockOverlay').classList.add('show');
+                return;
+            }
+            
+            if (currentQuestionIndex < sessionQuestions.length) {
+                loadQuestion();
+            } else {
+                endSession();
+            }
+        }
+
+        // Email Modal Functions
+        function showEmailModal() {
+            document.getElementById('emailModal').classList.add('show');
+            document.getElementById('emailInput').focus();
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.remove('show');
+        }
+
+        function closeEmailModalAndContinue() {
+            closeEmailModal();
+            document.getElementById('lockOverlay').classList.remove('show');
+            hasUnlocked = true;
+            localStorage.setItem('clinicalPearlsUnlocked', 'true');
+            
+            // Continue to next question
+            if (currentQuestionIndex < sessionQuestions.length) {
+                loadQuestion();
+            }
+        }
+
+        function submitEmail(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            
+            // In production, you'd send this to your backend/email service
+            // For now, we'll simulate an API call
+            setTimeout(() => {
+                // Store email in localStorage (in production, send to backend)
+                localStorage.setItem('clinicalPearlsEmail', email);
+                localStorage.setItem('clinicalPearlsUnlocked', 'true');
+                
+                // Show success message
+                document.getElementById('emailFormContent').style.display = 'none';
+                document.getElementById('successContent').style.display = 'block';
+                
+                // Track conversion (in production, use proper analytics)
+                console.log('Email captured:', email);
+                
+                // You could integrate with:
+                // - Mailchimp API
+                // - ConvertKit API
+                // - Your own backend endpoint
+                // - Google Sheets via Apps Script
+                // Example:
+                // fetch('https://your-backend.com/api/waitlist', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ email })
+                // });
+                
+            }, 1000);
+        }
+
+        // Update timer
+        function updateTimer() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+            
+            if (elapsed > 90) {
+                timerEl.classList.add('warning');
+            } else {
+                timerEl.classList.remove('warning');
+            }
+        }
+
+        // Update progress
+        function updateProgress() {
+            const progress = (currentQuestionIndex / sessionQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `${currentQuestionIndex} / ${sessionQuestions.length} questions`;
+        }
+
+        // Update stats
+        function updateStats() {
+            todayCount = totalAnswered;
+            const scorePercent = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            
+            document.getElementById('todayCount').textContent = todayCount;
+            document.getElementById('streak').textContent = streak + '🔥';
+            document.getElementById('score').textContent = scorePercent + '%';
+        }
+
+        // Show feedback
+        function showFeedback(symbol) {
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            feedback.textContent = symbol;
+            feedback.style.color = symbol === '✓' ? 'var(--accent-success)' : 'var(--accent-secondary)';
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                feedback.remove();
+            }, 500);
+        }
+
+        // End session
+        function endSession() {
+            clearInterval(timerInterval);
+            const scorePercent = Math.round((correctCount / totalAnswered) * 100);
+            
+            alert(`Session Complete!\n\nScore: ${scorePercent}%\nCorrect: ${correctCount}/${totalAnswered}\nStreak: ${streak}\n\nGreat work! Come back tomorrow to keep your streak going.`);
+            
+            // Reset for new session
+            if (confirm('Start a new session?')) {
+                initSession();
+            }
+        }
+
+        // Initialize on load
+        initSession();
+    </script>
+</body>
+</html>
